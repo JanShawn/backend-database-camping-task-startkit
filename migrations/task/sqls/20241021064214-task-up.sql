@@ -284,16 +284,16 @@ GROUP BY "COURSE_BOOKING".user_id;
     -- from ( 用戶王小明的購買堂數 ) as "CREDIT_PURCHASE"
     -- inner join ( 用戶王小明的已使用堂數) as "COURSE_BOOKING"
     -- on "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id;
--- SELECT
---   "CREDIT_PURCHASE".user_id,
---   SUM("CREDIT_PURCHASE".purchased_credits) - COUNT("COURSE_BOOKING".id) AS remaining_credit
--- FROM "CREDIT_PURCHASE"
--- INNER JOIN "COURSE_BOOKING" ON "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id
--- -- 篩選出是小明的資料並排除已取消的課程
--- WHERE "CREDIT_PURCHASE".user_id=(SELECT id FROM "USER" WHERE email='wXlTq@hexschooltest.io')
---   AND "COURSE_BOOKING".user_id = (SELECT id FROM "USER" WHERE email='wXlTq@hexschooltest.io')
---   AND "COURSE_BOOKING".status!='課程已取消'
--- GROUP BY "CREDIT_PURCHASE".user_id;
+SELECT
+  "CREDIT_PURCHASE".user_id,
+  SUM("CREDIT_PURCHASE".purchased_credits) - COUNT("COURSE_BOOKING".id) AS remaining_credit
+FROM "CREDIT_PURCHASE"
+INNER JOIN "COURSE_BOOKING" ON "COURSE_BOOKING".user_id = "CREDIT_PURCHASE".user_id
+-- 篩選出是小明的資料並排除已取消的課程
+WHERE "CREDIT_PURCHASE".user_id=(SELECT id FROM "USER" WHERE email='wXlTq@hexschooltest.io')
+  AND "COURSE_BOOKING".user_id = (SELECT id FROM "USER" WHERE email='wXlTq@hexschooltest.io')
+  AND "COURSE_BOOKING".status!='課程已取消'
+GROUP BY "CREDIT_PURCHASE".user_id;
 
 -- ████████  █████   █     ███  
 --   █ █   ██    █  █     █     
