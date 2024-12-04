@@ -98,15 +98,15 @@ INSERT INTO "COACH" (user_id,experience_years)
 VALUES 
   -- 將用戶 `李燕容` 新增為教練，並且年資設定為2年
   (
-    (SELECT id FROM "USER" WHERE email='lee2000@hexschooltest.io'),2
+    SELECT id FROM "USER" WHERE email='lee2000@hexschooltest.io',2
   ),
   -- 將用戶`肌肉棒子`新增為教練，並且年資設定為2年
   (
-    (SELECT id FROM "USER" WHERE email='muscle@hexschooltest.io'),2
+    SELECT id FROM "USER" WHERE email='muscle@hexschooltest.io',2
   ),
   -- 將用戶`Q太郎`新增為教練，並且年資設定為2年
   (
-    (SELECT id FROM "USER" WHERE email='starplatinum@hexschooltest.io'),2
+    SELECT id FROM "USER" WHERE email='starplatinum@hexschooltest.io',2
   );
 
 -- 3-2. 新增：承1，為三名教練新增專長資料至 `COACH_LINK_SKILL` ，資料需求如下：
@@ -117,29 +117,29 @@ INSERT INTO "COACH_LINK_SKILL" (coach_id, skill_id)
 VALUES
     -- 所有教練都有 `重訓` 專長    
     (
-        (SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io')),
+        SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'lee2000@hexschooltest.io'),
         (SELECT id FROM "SKILL" WHERE name = '重訓')
     ),
     (
-        (SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io')),
+        SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io'),
         (SELECT id FROM "SKILL" WHERE name = '重訓')
     ),
     (
-        (SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io')),
+        SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io'),
         (SELECT id FROM "SKILL" WHERE name = '重訓')
     ),
     -- 教練`肌肉棒子` 需要有 `瑜伽` 專長
     (
-        (SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io')),
+        SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'muscle@hexschooltest.io'),
         (SELECT id FROM "SKILL" WHERE name = '瑜伽')
     ),
     -- 教練`Q太郎` 需要有`有氧運動`與`復健訓練`專長    
     (
-        (SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io')),
+        SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io'),
         (SELECT id FROM "SKILL" WHERE name = '有氧運動')
     ),
     (
-        (SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io')),
+        SELECT id FROM "COACH" WHERE user_id = (SELECT id FROM "USER" WHERE email = 'starplatinum@hexschooltest.io'),
         (SELECT id FROM "SKILL" WHERE name = '復健訓練')
     );
 
